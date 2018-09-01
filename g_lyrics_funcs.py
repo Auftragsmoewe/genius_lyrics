@@ -131,11 +131,16 @@ def genius_search(query):
 
 def get_lyrics_from_url(song_url):
     '''Looks up song_url, parses page for lyrics and returns the lyrics.'''
-
+    lyrics = ""
     get_url = requests.get(song_url)
-    song_soup = BeautifulSoup(get_url.text, 'lxml')
-    soup_lyrics = song_soup.lyrics.text
-    return soup_lyrics
+    song_soup = BeautifulSoup(get_url.content, 'lxml')
+    song_soup = song_soup.find('div', class_='lyrics').find_all('p')
+    for line in song_soup:
+        lyrics = lyrics + line.get_text() + "\n"
+    lyrics = lyrics [:-1] # remove last new line from lyrics, optional
+    return lyrics
+
+
 
 
 def pick_from_search(results_array):
