@@ -162,4 +162,4 @@ def pick_from_search(results_array):
             choice = -1
 
     actual_choice = choice - 1
-return results_array[actual_choice]
+    return results_array[actual_choice]
