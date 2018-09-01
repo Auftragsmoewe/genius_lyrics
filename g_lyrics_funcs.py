@@ -155,11 +155,15 @@ def pick_from_search(results_array):
 
     choice = -1
     while choice <= 0 or choice > len(results_array):
+        choice = input('\nPlease select a song number [1]: ')
+        if not choice:
+            choice = 1
+            break
         try:
-            choice = int(input('\nPlease select a song number: '))
+            choice = int(choice)
         except ValueError:
             six.print_('[!] Please enter a number.')
             choice = -1
-
+            
     actual_choice = choice - 1
     return results_array[actual_choice]
