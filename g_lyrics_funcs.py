@@ -139,7 +139,7 @@ def get_lyrics_from_url(song_url):
     for line in song_soup:
         lyrics = lyrics + line.get_text() + "\n"
     lyrics = lyrics [:-1] # remove last new line from lyrics, optional
-return lyrics
+    return lyrics
 
 
 
