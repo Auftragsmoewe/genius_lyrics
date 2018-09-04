@@ -135,9 +135,8 @@ def get_lyrics_from_url(song_url):
     get_url = requests.get(song_url)
     song_soup = BeautifulSoup(get_url.content, 'lxml')
     song_soup = song_soup.find('div', class_='lyrics').find_all('p')
-    for line in song_soup:
-        lyrics = lyrics + line.get_text() + "\n"
-    lyrics = lyrics [:-1] # remove last new line from lyrics, optional
+    lyrics = [ line.get_text() + '/n' for line in song_soup]
+    lyrics = ''.join(lyrics) [:-2] # :-2 removes last new-line from lyrics, optional
     return lyrics
 
 
